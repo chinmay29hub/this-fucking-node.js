@@ -4,21 +4,16 @@ const logger = require("./middleware/logger")
 const auth = require("./middleware/auth")
 const helmet = require("helmet")
 const morgan = require("morgan")
-
 const courses = require("./routes/courses")
 const home = require("./routes/home")
-
 const config = require("config")
 
 const app = express()
 
 app.set("view engine", "pug")
 app.set("views", "./views") //default
-
 app.use(express.json())
-
 app.use(helmet());
-
 app.use("/api/courses", courses)
 app.use("/", home)
 
