@@ -78,7 +78,52 @@ async function getCourses () {
     console.log(courses)
 }
 
+
+async function updateCourse (id) {
+    // Approach 1 : query first
+    // findById
+    // Modify its properties
+    // save()
+    // const course = await Course.findById(id)
+
+    // if (!course) {
+    //     return
+    // } else {
+    //     // course.isPublished = true,
+    //     // course.author = "Another author"
+    //     course.set({
+    //         isPublished : true,
+    //         author : "random author"
+    //     })
+    //     const result = await course.save()
+    //     console.log(result)
+    // }
+
+    // Approach 2 : Update first
+    // update directly
+    // optionally : get the updated document
+
+    const course = await Course.updateOne({ _id : id }, {
+        
+    })
+
+    if (!course) {
+        return
+    } else {
+        // course.isPublished = true,
+        // course.author = "Another author"
+        course.set({
+            isPublished : true,
+            author : "random author"
+        })
+        const result = await course.save()
+        console.log(result)
+    }
+}
+
+
 // createCourse()
-getCourses()
+updateCourse("63c788991933748d83387dae")
+// getCourses()
 
 
