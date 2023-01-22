@@ -14,8 +14,8 @@ const Course = mongoose.model("Course", courseScheme)
 
 async function createCourse () {
     const course = new Course({
-        name : "Regex Practice",
-        author : "@chinmay",
+        name : "Mongoose Practice",
+        author : "@chinmay29hub_2",
         tags : ["nodejs", "frontend"],
         isPublished : true
     })
@@ -103,27 +103,37 @@ async function updateCourse (id) {
     // update directly
     // optionally : get the updated document
 
-    const course = await Course.updateOne({ _id : id }, {
-        
-    })
+    const course = await Course.findByIdAndUpdate(id, {
+        $set : {
+            author : "@hello",
+            isPublished : true
+        }
+    }, { new : true })
 
-    if (!course) {
-        return
-    } else {
-        // course.isPublished = true,
-        // course.author = "Another author"
-        course.set({
-            isPublished : true,
-            author : "random author"
-        })
-        const result = await course.save()
-        console.log(result)
-    }
+    // if (!course) {
+    //     return
+    // } else {
+    //     // course.isPublished = true,
+    //     // course.author = "Another author"
+    //     course.set({
+    //         isPublished : true,
+    //         author : "random author"
+    //     })
+    //     const result = await course.save()
+    console.log(course)
+    // }
+}
+
+async function removeCourse (id) {
+    // const result = await Course.deleteOne({ _id : id })
+    const course = await Course.findOneAndRemove(id)
+    console.log(course)
 }
 
 
 // createCourse()
-updateCourse("63c788991933748d83387dae")
+// updateCourse("63cc1528e1d5868fdd1990b5")
+removeCourse("63cce32d4832db3e456bd04c")
 // getCourses()
 
 
