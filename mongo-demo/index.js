@@ -14,7 +14,10 @@ const courseScheme = new mongoose.Schema({
     category : {
         type : String,
         enum : ["web", "app", "network"],
-        required : true
+        required : true,
+        lowercase : true,
+        // uppercase : true,
+        trim : true
     },
     author : String,
     tags : {
@@ -39,6 +42,8 @@ const courseScheme = new mongoose.Schema({
         type : Number,
         min : 10,
         max : 200,
+        get : v => Math.round(v),
+        set : v => Math.round(v),
         required : function () {
             return this.isPublished
         }
@@ -49,18 +54,21 @@ const Course = mongoose.model("Course", courseScheme)
 
 async function createCourse () {
     const course = new Course({
-        name : "Mongoose Practice",
-        category : "webbb",
+        name : "Mongoose Practice _ 100",
+        category : "WEb",
         author : "@chinmay29hub_2",
-        tags : [],
+        tags : ["frontend"],
         isPublished : true,
-        price : 30
+        price : 15.8888
     })
     try {
         const result = await course.save()
         console.log(result)
     } catch (error) {
-        console.log(error.errors)
+        // console.log(error.errors)
+        for (field in error.errors) {
+            console.log(error.errors[field].message)
+        }
     }
     
 }
@@ -85,8 +93,9 @@ async function getCourses () {
 
     const courses = await Course
     .find({
-        author : "@chinmay29hub",
-        isPublished : true
+        // author : "@chinmay29hub",
+        // isPublished : true
+        _id : "63ceb33f33f672cb8e85bea4"
     })
 
     // .find()
@@ -106,17 +115,18 @@ async function getCourses () {
     // })
     // .find({ price : { $in : [10, 15, 20] } })
 
-    .skip((pageNumber - 1) * pageSize)
-    .limit(pageSize)
+    // .skip((pageNumber - 1) * pageSize)
+    // .limit(pageSize)
     .sort({
         name: 1
     })
     .select({
         name : 1,
-        tags : 1
+        tags : 1,
+        price : 1
     })
     // .count()
-    console.log(courses)
+    console.log(courses[0].price)
 }
 
 
@@ -172,9 +182,9 @@ async function removeCourse (id) {
 }
 
 
-createCourse()
+// createCourse()
 // updateCourse("63cc1528e1d5868fdd1990b5")
 // removeCourse("63cce32d4832db3e456bd04c")
-// getCourses()
+getCourses()
 
 
