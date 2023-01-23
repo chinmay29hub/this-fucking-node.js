@@ -1,13 +1,48 @@
 const mongoose = require("mongoose")
+const isAsync = require('isasync');
 
 mongoose.connect("mongodb://localhost:27017/playground").then(() => console.log("Connected to MongoDb...")).catch(error => console.error("Could not connect to mongodb", error.message))
 
 const courseScheme = new mongoose.Schema({
-    name : String,
+    name : {
+        type : String,
+        required : true,
+        minlength : 5,
+        maxlength : 255
+        // match : /pattern/
+    },
+    category : {
+        type : String,
+        enum : ["web", "app", "network"],
+        required : true
+    },
     author : String,
-    tags : [ String ],
+    tags : {
+        type : Array,
+        validate : {
+            isAsync : true,
+            validator : async function (v) {
+                // setTimeout(() => {
+                //     // some async work
+                //     // const result = await(v && v.length > 0)
+                //     // callback(result)
+                //     return await v && v.length > 0
+                // }, 4000)
+                return await v && v.length > 0
+            },
+            message : "A course should have at least 1 tag!" 
+        }
+    },
     date : { type: Date, default : Date.now },
-    isPublished : Boolean
+    isPublished : Boolean,
+    price : { 
+        type : Number,
+        min : 10,
+        max : 200,
+        required : function () {
+            return this.isPublished
+        }
+     }
 })
 
 const Course = mongoose.model("Course", courseScheme)
@@ -15,13 +50,19 @@ const Course = mongoose.model("Course", courseScheme)
 async function createCourse () {
     const course = new Course({
         name : "Mongoose Practice",
+        category : "webbb",
         author : "@chinmay29hub_2",
-        tags : ["nodejs", "frontend"],
-        isPublished : true
+        tags : [],
+        isPublished : true,
+        price : 30
     })
+    try {
+        const result = await course.save()
+        console.log(result)
+    } catch (error) {
+        console.log(error.errors)
+    }
     
-    const result = await course.save()
-    console.log(result)
 }
 
 async function getCourses () {
@@ -131,9 +172,9 @@ async function removeCourse (id) {
 }
 
 
-// createCourse()
+createCourse()
 // updateCourse("63cc1528e1d5868fdd1990b5")
-removeCourse("63cce32d4832db3e456bd04c")
+// removeCourse("63cce32d4832db3e456bd04c")
 // getCourses()
 
 
