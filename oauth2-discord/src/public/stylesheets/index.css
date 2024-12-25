@@ -1,0 +1,25 @@
+.is-fullscreen-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 3.25rem);
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+@media (max-width: 768px) {
+  /* For smaller screens like phones */
+  .is-fullscreen-centered {
+    padding-left: 10px; /* Add space to the left */
+    padding-right: 10px; /* Add space to the right */
+  }
+}
