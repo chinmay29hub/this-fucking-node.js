@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 10000
 const session = require("express-session")
 const passport = require("passport")
 const discordStrategy = require("./strategies/discordstrategy")
+const googleStrategy = require("./strategies/googleStrategy");
+const githubStrategy = require("./strategies/githubStrategy");
 const db = require("./database/database")
 const path = require("path")
 

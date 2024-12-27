@@ -14,7 +14,7 @@
                         </path>
                     </g>
                 </svg>
-                
+
                 <span style="margin-left: 8px; font-size: 1.2rem; font-weight: bold;">Discord | OAuth</span>
             </a>
 
@@ -63,14 +63,21 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-focused" href="https://github.com/chinmay29hub/this-fucking-node.js/tree/main/oauth2-discord" target="_blank">
+                        <a class="button is-focused"
+                            href="https://github.com/chinmay29hub/this-fucking-node.js/tree/main/oauth2-discord"
+                            target="_blank">
                             <span class="icon">
                                 <i class="fab fa-github"></i>
-                              </span>
-                            <strong>Github</strong>
+                            </span>
+                            <strong>Code</strong>
                         </a>
-                        <a href="/auth" class="button is-link">
-                            Log in
+                        <a href="/auth/logout" class="button is-danger">
+                            <span class="icon">
+                                <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>
+                            </span>
+                            <strong>
+                                Log Out
+                            </strong>
                         </a>
                     </div>
                     <!-- <button class="button is-normal is-link">
@@ -83,10 +90,11 @@
 
     <section class="section is-fullscreen-centered">
         <div class="content has-text-centered">
-          <p class="title is-1 has-text-weight-bold has-text-white-bis">
-            Welcome to the Discord | OAuth App 🤥
-          </p>
-          <p class="subtitle is-4 has-text-weight-bold has-text-white-bis">Experience Seamless Discord OAuth Integration for Easy Sign-In!</p>
+            <p class="title is-1 has-text-weight-bold has-text-white-bis">
+                Hi <%= username %>,
+            </p>
+            <p class="subtitle is-3 has-text-weight-bold has-text-white-bis">You Are Now Logged In Using <%= loginMethod
+                    %>!</p>
         </div>
-      </section>
+    </section>
     <%- include('partials/footer') -%>

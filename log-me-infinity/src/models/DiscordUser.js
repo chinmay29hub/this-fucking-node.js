@@ -3,7 +3,15 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     discordId: {
         type: String,
-        required: true,
+        required: false,
+    },
+    googleId: {
+        type: String,
+        required: false,
+    },
+    githubId: {
+        type: String,
+        required: false,
     },
     username: {
         type: String,
@@ -11,6 +19,10 @@ const UserSchema = new mongoose.Schema({
     },
     guilds: {
         type: Array,
+        required: true
+    },
+    loginMethod: {
+        type: String,
         required: true
     }
 });

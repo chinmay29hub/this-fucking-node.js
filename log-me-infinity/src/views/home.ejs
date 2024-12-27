@@ -2,7 +2,7 @@
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
+            <a class="navbar-item" href="/">
                 <svg width="800px" height="800px" viewBox="0 -28.5 256 256" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     preserveAspectRatio="xMidYMid">
@@ -14,8 +14,8 @@
                         </path>
                     </g>
                 </svg>
-                
-                <span style="margin-left: 8px; font-size: 1.2rem; font-weight: bold;">Discord | OAuth</span>
+
+                <span style="margin-left: 8px; font-size: 1.2rem; font-weight: bold;">Log Me Infinity</span>
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -63,14 +63,31 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-focused" href="https://github.com/chinmay29hub/this-fucking-node.js/tree/main/oauth2-discord" target="_blank">
+                        <a class="button is-focused"
+                            href="https://github.com/chinmay29hub/this-fucking-node.js/tree/main/oauth2-discord"
+                            target="_blank">
                             <span class="icon">
                                 <i class="fab fa-github"></i>
-                              </span>
-                            <strong>Github</strong>
+                            </span>
+                            <strong>Code</strong>
                         </a>
-                        <a href="/auth/logout" class="button is-danger">
-                            Log Out
+                        <a href="/auth/discord" class="button is-link">
+                            <span class="icon">
+                                <i class="fa-brands fa-discord" style="color: #ffffff;"></i>
+                            </span>
+                            <strong>Log In</strong>
+                        </a>
+                        <a href="/auth/google" class="button is-link">
+                            <span class="icon">
+                                <i class="fa-brands fa-google" style="color: #ffffff;"></i>
+                            </span>
+                            <strong>Log In</strong>
+                        </a>
+                        <a href="/auth/github" class="button is-link">
+                            <span class="icon">
+                                <i class="fa-brands fa-github" style="color: #ffffff;"></i>
+                            </span>
+                            <strong>Log In</strong>
                         </a>
                     </div>
                     <!-- <button class="button is-normal is-link">
@@ -83,10 +100,11 @@
 
     <section class="section is-fullscreen-centered">
         <div class="content has-text-centered">
-          <p class="title is-1 has-text-weight-bold has-text-white-bis">
-            Hi <%= username %>,
-          </p>
-          <p class="subtitle is-3 has-text-weight-bold has-text-white-bis">You Are Now Logged In Using Discord!</p>
+            <p class="title is-1 has-text-weight-bold has-text-white-bis">
+                Welcome to the Ultimate OAuth Hub 🚀
+            </p>
+            <p class="subtitle is-4 has-text-weight-bold has-text-white-bis">Experience seamless and secure sign-in
+                across multiple platforms with ease!</p>
         </div>
-      </section>
+    </section>
     <%- include('partials/footer') -%>
